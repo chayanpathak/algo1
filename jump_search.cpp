@@ -6,13 +6,14 @@ int jumpsearch (int a[], int searched, int n){
 	int m = n;
 	while (m >=1){
 		m = (m/sqrt(n));  
-		for (int i = 0; a[i] <= searched ; i = i + m){
+		int i = 0;
+		while (a[i] <= searched ){	
 			if (a[i] == searched){
 				return i;
 			}
+			i += m;
 		}
 	}
-	return -1;
 }
 int main() {
 	// your code goes here

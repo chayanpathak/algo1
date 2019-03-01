@@ -2,14 +2,14 @@
 #include <math.h>
 using namespace std;
  
-void selectionsort(int a[], int n){
+void bubblesort(int a[], int n){
 	int temp;
 	for (int i = 0; i < n; i++){
-		for(int j= i+1; j < n; j++){
-			if(a[j] < a[i]){
+		for(int j= 0; j < n; j++){
+			if(a[j] > a[j+1]){
 				temp = a[j];
-				a[j] = a[i];
-				a[i] = temp;
+				a[j] = a[j+1];
+				a[j+1] = temp;
 			}
 		}
 	}
@@ -20,7 +20,7 @@ int main() {
 	int arrsize= sizeof(a)/(sizeof(a[0]));
 	int pos;
 	int ele = 7;
-	selectionsort(a,arrsize);
+	bubblesort(a,arrsize);
 	for (int i = 0; i < arrsize; i++){
 		cout <<"\n "<<a[i];
 	}

@@ -2,7 +2,7 @@
 #include <math.h>
 using namespace std;
 
-int jumpstep (int a[], int searched, int n){
+int jumpsearch (int a[], int searched, int n){
 	int m = n;
 	while (m >=1){
 		m = (m/sqrt(n));  

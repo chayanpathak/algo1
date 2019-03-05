@@ -1,6 +1,12 @@
 #include <iostream>
 #include <math.h>
 using namespace std;
+void print(int a[], int size) {
+    cout <<"\n";
+    for (int i = 0; i < size; i++) {
+        cout << a[i];
+    }
+}
 void merge(int a[], int left, int mid, int right) {
     int length1 = mid - left + 1;
     int length2 = right - mid;

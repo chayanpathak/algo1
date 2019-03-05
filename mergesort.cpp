@@ -1,21 +1,19 @@
 #include <iostream>
 #include <math.h>
 using namespace std;
-void merge(int a[], int length, int arr1, int arr2) {
-    int i=arr1;
-    int j=arr2;
-    int k;
-    int b[length],c[length];
-    for (int i = 0; i < length; i++ ) {
-        b[i] = a[arr1];
-        arr1++;
+void merge(int a[], int left, int mid, int right) {
+    int length1 = mid - left + 1;
+    int length2 = right - mid;
+    int k = left;
+    int b[length1],c[length2];
+    for (int i = 0; i < length1; i++ ) {
+        b[i] = a[i + length1];
     }
-    for (int j = 0; j < length; j++ ) {
-        c[j] = a[arr2];
-        arr2++;
+    for (int j = 0; j < length2; j++ ) {
+        c[j] = a[j + length2];
     }
-    i = 0, j = 0;
-    while (k != 2*length) {
+    int i = 0, j = 0;
+    while ((i < length1) && (j < length2)) {
         if (b[i] > c [j]) {
             a[k] = c[j];
             k++;
@@ -26,6 +24,16 @@ void merge(int a[], int length, int arr1, int arr2) {
             i++;
             k++;
         }
+    }
+    while(i < length1) {
+        a[k] = b[i];
+        i++;
+        k++;
+    }
+    while(j < length2) {
+        a[k] = c[j];
+        j++;
+        k++;
     }
 }
 void mergesort(int a[], int left, int right) {

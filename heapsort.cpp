@@ -1,14 +1,14 @@
 #include <iostream>
 #include <math.h>
 using namespace std;
-void swap (int first, int second){
+void swapper (int first, int second){
     int temp;
     temp = second;
     second = first;
     first = temp;
 }
 void heapify (int a[], int size) {
-    for(int i = 0; i < size; i++) {
+    for(int i = 0; i < (size/2) ; i++) {
         int left = 2*i;
         int right = 2*i + 1;
         if (a[i] < a[left]) {
@@ -20,14 +20,19 @@ void heapify (int a[], int size) {
     }
 }
 void heapsort(int a[], int size){
-    int b[size];
-    int treesize =size;
+    int treesize = size;
     int i = size;
+    heapify(a,size);
     while (treesize > 0) {
+        cout << " \t " << a[i];
         swap(a[i],a[0]);
         i --;
         treesize--;
         heapify(a, treesize);
+    }
+    cout <<"\n";
+    for(int i = 0; i < size; i++) {
+        cout <<"\t"<<a[i];
     }
 }
 int main() {

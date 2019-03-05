@@ -1,7 +1,7 @@
 #include <iostream>
 #include <math.h>
 using namespace std;
-void merge(int a[],int length, int arr1, int arr2) {
+void merge(int a[], int length, int arr1, int arr2) {
     int i=arr1;
     int j=arr2;
     int k;
@@ -16,9 +16,9 @@ void merge(int a[],int length, int arr1, int arr2) {
         }
     }
 }
-void mergesort(int a[] int left, int right) {
-    mid = (left + right)/2;
-    size = (right - left)/2;
+void mergesort(int a[], int left, int right) {
+    int mid = (left + right)/2;
+    int size = (right - left)/2;
     mergesort(a,left,mid-1);
     mergesort(a,mid,right);
     merge(a,left,mid,size);

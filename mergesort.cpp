@@ -7,10 +7,10 @@ void merge(int a[], int left, int mid, int right) {
     int k = left;
     int b[length1],c[length2];
     for (int i = 0; i < length1; i++ ) {
-        b[i] = a[i + length1];
+        b[i] = a[i + left];
     }
     for (int j = 0; j < length2; j++ ) {
-        c[j] = a[j + length2];
+        c[j] = a[j + mid + 1];
     }
     int i = 0, j = 0;
     while ((i < length1) && (j < length2)) {
@@ -37,27 +37,13 @@ void merge(int a[], int left, int mid, int right) {
     }
 }
 void mergesort(int a[], int left, int right) {
-    int mid = (left + right)/2;
-    int size = (right - left)/2;
-    mergesort(a,left,mid-1);
-    mergesort(a,mid,right);
-    merge(a,size,left,mid);
-} 
-void insertionsort(int a[], int n){
-	int temp;
-	for (int i = 0; i < n; i++){
-		cout<<"\n";
-		for(int k = 0; k < n; k++){
-			cout << " "<<a[k];
-		}
-		for(int j= i; j > 0; j--){
-			if(a[j] < a[j-1]){
-				temp = a[j];
-				a[j] = a[j-1];
-				a[j-1] = temp;
-			}
-		}
-	}
+    if (left < right) {
+        int mid = (left + right)/2;
+        int size = (right - left)/2;
+        mergesort(a,left,mid);
+        mergesort(a,mid + 1,right);
+        merge(a,left,mid,right);
+    }
 } 
 int main() {
 	// your code goes here
@@ -65,7 +51,7 @@ int main() {
 	int arrsize= sizeof(a)/(sizeof(a[0]));
 	int pos;
 	int ele = 7;
-	mergesort(a,0,arrsize);
+	mergesort(a,0,arrsize-1);
 	for (int i = 0; i < arrsize; i++){
 		cout <<"\n "<<a[i];
 		//cout<<"\n"<<arrsize;

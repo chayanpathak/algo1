@@ -5,14 +5,26 @@ void merge(int a[], int length, int arr1, int arr2) {
     int i=arr1;
     int j=arr2;
     int k;
-    for (k = 0; i < length; k++) {
-        if (a[i] > a[j]) {
-            a[k] = a[j];
+    int b[length],c[length];
+    for (int i = 0; i < length; i++ ) {
+        b[i] = a[arr1];
+        arr1++;
+    }
+    for (int j = 0; j < length; j++ ) {
+        c[j] = a[arr2];
+        arr2++;
+    }
+    i = 0, j = 0;
+    while (k != 2*length) {
+        if (b[i] > c [j]) {
+            a[k] = c[j];
+            k++;
             j++;
         }
-        else if (a[i] < a[j]){
-            a[k] = a[i];
+        else if (b[i] <= c[j]) {
+            a[k] = b[i];
             i++;
+            k++;
         }
     }
 }
@@ -21,7 +33,7 @@ void mergesort(int a[], int left, int right) {
     int size = (right - left)/2;
     mergesort(a,left,mid-1);
     mergesort(a,mid,right);
-    merge(a,left,mid,size);
+    merge(a,size,left,mid);
 } 
 void insertionsort(int a[], int n){
 	int temp;

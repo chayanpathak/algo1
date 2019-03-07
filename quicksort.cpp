@@ -10,14 +10,13 @@ void swapper (int first, int second){
 int partition(int arr[], int low, int high){
     int pivot = arr[high];
     int i = low - 1;
-    for(int j = low; j <= high; j++){
-        if (arr[j] < pivot) {
+    for(int j = low; j <= high - 1; j++){
+        if (arr[j] <= pivot) {
             i++;
             swap(arr[j],arr[i]);
         }
-        i++;
-        swap(pivot,arr[i]);
-        return i;
+        swap(arr[high],arr[i+1]);
+        return (i+1);
     }
 }
 void quicksort(int arr[], int low, int high) {
@@ -34,7 +33,7 @@ int main() {
 	int arrsize= sizeof(a)/(sizeof(a[0]));
 	int pos;
 	int ele = 7;
-	quicksort(a,0,arrsize);
+	quicksort(a,0,arrsize-1);
 	for (int i = 0; i < arrsize; i++){
 		cout <<"\n "<<a[i];
 		//cout<<"\n"<<arrsize;

@@ -1,11 +1,11 @@
 #include <iostream>
 #include <math.h>
 using namespace std;
-void swapper (int first, int second){
+void swapper (int* first, int* second){
     int temp;
-    temp = second;
-    second = first;
-    first = temp;
+    temp = *second;
+    *second = *first;
+    *first = temp;
 }
 int partition(int arr[], int low, int high){
     int pivot = arr[high];
@@ -15,9 +15,9 @@ int partition(int arr[], int low, int high){
             i++;
             swap(arr[j],arr[i]);
         }
-        swap(arr[high],arr[i+1]);
-        return (i+1);
     }
+    swap(arr[high],arr[i+1]);
+    return (i+1);
 }
 void quicksort(int arr[], int low, int high) {
     if(low < high) {

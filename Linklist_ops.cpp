@@ -12,9 +12,22 @@ int link_list_size(struct node *head){
     struct node *current = head;
     while(current->next != NULL){
         counter++;
+        cout << "\n"<<counter;
         current = current->next;
     }
     return counter;
+}
+void link_list_print(struct node *head){
+    int counter = 0;
+    struct node *current = head;
+    while(current->next != NULL){
+        cout<<"\n >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>";
+        counter++;
+        cout <<"\n The node number is: "<<counter;
+        cout <<"\n The data of the node is "<<current->data;
+        current = current->next;
+        cout<<"\n <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
+    }
 }
 void link_list_insert(struct node *head,int data, int position){
     int k = 1;
@@ -22,7 +35,6 @@ void link_list_insert(struct node *head,int data, int position){
     cout << "\n creating new node";
     new_node = (node *)malloc(sizeof(struct node));
     cout << "\n created new node";
-
     if(!new_node){
         cout << "No space error in creating new entry";
         return;
@@ -61,6 +73,7 @@ void Initialize_link_list(){
             cout << "\n data entered"<<data;
             link_list_insert(head,data,entry_position+1);
         }
+        link_list_print(head);
     }
 }
 int main() {

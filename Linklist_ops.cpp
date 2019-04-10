@@ -18,8 +18,11 @@ int link_list_size(struct node *head){
     return counter;
 }
 void link_list_print(struct node *head){
+    cout<<"++++++++++++++++++++++++++++++++++++++++++++++++++++++";
     int counter = 0;
     struct node *current = head;
+    cout <<"\n The data of the node is "<<current->data;
+    cout<<"\n"<<current->next;
     while(current->next != NULL){
         cout<<"\n >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>";
         counter++;
@@ -47,10 +50,11 @@ void link_list_insert(struct node *head,int data, int position){
         head = new_node;
     }
     else{
-        if(p->next != NULL && k < position){
+            // Traverse till we go to the position we want to insert
+        if(p != NULL && k < position){
+            k++;
             q = p;
             p = p->next;
-            k++;
         }
         q->next = new_node;
         new_node->next = p;
@@ -59,22 +63,25 @@ void link_list_insert(struct node *head,int data, int position){
 void Initialize_link_list(){
     node *head = NULL;
     head = new node();
-    int option = 1;
+    int option = 0;
     int entry_position;
     int data;
-    while(option == 1){
-        cout << "\n Enter 1.to enter more elements 2. to quit";
+    while(option != 1){
+        cout << "\n Enter 1. to quit";
         cin >> option;
-        if(option == 1){
+        if(option != 1){
             entry_position = link_list_size(head);
+            entry_position++;
             cout << "\n entry_position"<<entry_position;
+            cout <<"\n <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
             cout << "\n Enter the data";
             cin >> data;
             cout << "\n data entered"<<data;
-            link_list_insert(head,data,entry_position+1);
+            cout <<"\n <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
+            link_list_insert(head,data,1);
         }
-        link_list_print(head);
     }
+    link_list_print(head);
 }
 int main() {
 	// your code goes here

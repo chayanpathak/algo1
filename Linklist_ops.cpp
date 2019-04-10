@@ -19,13 +19,16 @@ int link_list_size(struct node *head){
 void link_list_insert(struct node *head,int data, int position){
     int k = 1;
     struct node *new_node, *p, *q;
+    cout << "\n creating new node";
     new_node = (node *)malloc(sizeof(struct node));
-    
+    cout << "\n created new node";
+
     if(!new_node){
         cout << "No space error in creating new entry";
         return;
     }
     new_node->data = data;
+    cout << "\n assigned the data to new node";
     p = head;
     if (position == 1){
         new_node->next = p;
@@ -52,9 +55,11 @@ void Initialize_link_list(){
         cin >> option;
         if(option == 1){
             entry_position = link_list_size(head);
+            cout << "\n entry_position"<<entry_position;
             cout << "\n Enter the data";
             cin >> data;
-            link_list_insert(head,data,entry_position);
+            cout << "\n data entered"<<data;
+            link_list_insert(head,data,entry_position+1);
         }
     }
 }

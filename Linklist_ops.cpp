@@ -90,7 +90,7 @@ void ll_insert(struct node **head, int data, int position){
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 //Module to make new linked list
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-void Init_ll(){
+struct node* Init_ll(){
     struct node * ll_head;
 	int value1 = 3;
 	int option =0;
@@ -105,7 +105,7 @@ void Init_ll(){
         entry_pos++;
     	ll_insert(&ll_head,value,entry_pos);
         cout << "\n <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
-        cout<<"\n Enter 1 to quit";
+        cout<<"\n Enter  1 to quit";
         cin>> option;
         cout <<"\n ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++";
         cout <<"\n ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++";
@@ -115,10 +115,76 @@ void Init_ll(){
         cout <<"\n ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++";
     }
     ll_print(ll_head);
+    return ll_head;
+}
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+//Module to delete entry in the linked list
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+void ll_delete(struct node **head, int position){
+    int k = 1;
+    struct node *p, *q;
+    if (*head == NULL){
+        cout <<"\n  The List from which you are trying to delete is empty";
+        return;
+    }
+    else {
+        p = *head;
+        //deletion from the first entry in the linked list
+        if (position == 1){
+            *head  = p->next;
+            free(p);
+            return;
+        }
+        else {
+            //Traverse to the position of the linked list where we want to delete element
+            while (p != NULL && k < position){
+            k++;
+            q = p;
+            p = p->next;
+            }
+            if (p == NULL) {
+                // We are at the end
+                cout << "\n The position does not exist";
+                return;
+            }
+            else{
+                // We have reached the position
+                q->next = p->next;
+                free(p);
+                return;
+            }
+
+        }
+    }
+
+}
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+//Module to drive deletion in the linked list
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+void Delete_ll_init(struct node *head){
+	int option =0;
+	int delete_pos;
+    while (option !=1){
+        cout <<"\n enter the position you want to delete";
+    	cin >> delete_pos;
+    	ll_delete(&head,delete_pos+1);
+        cout << "\n <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
+        cout<<"\n Enter  1 to quit";
+        cin>> option;
+        cout <<"\n ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++";
+        cout <<"\n ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++";
+        cout <<"\n ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++";
+        cout <<"\n ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++";
+        cout <<"\n ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++";
+        cout <<"\n ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++";
+    }
+    ll_print(head);
 
 }
 int main() {
 	// your code goes here
-    Init_ll();
+	struct node* head;
+    head = Init_ll();
+    Delete_ll_init(head);
 	return 0;
 }

@@ -90,24 +90,14 @@ void ll_insert(struct node **head, int data, int position){
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 //Module to make new linked list
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-void Init_ll(struct node  * head){
-    int option = 0;
-    int entry_position;
-    int data;
-}
-int main() {
-	// your code goes here
-	struct node * ll_head;
+void Init_ll(){
+    struct node * ll_head;
 	int value1 = 3;
 	int option =0;
 	int value,entry_pos;
-	//a->data = 0;
-	//a->next = NULL;
-	cout <<"\n Enter the value that goes in the head";
+    cout <<"\n The value that goes in the head is "<<value1;
 	ll_head = get_node(value1);
-	ll_head->next = get_node(value1);
-	ll_head->next->next = get_node(value1+1);
-    ll_head->next->next->next = get_node(value1+2);
+
     while (option !=1){
         cout <<"\n enter the value you want to enter";
     	cin >> value;
@@ -117,7 +107,18 @@ int main() {
         cout << "\n <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
         cout<<"\n Enter 1 to quit";
         cin>> option;
+        cout <<"\n ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++";
+        cout <<"\n ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++";
+        cout <<"\n ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++";
+        cout <<"\n ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++";
+        cout <<"\n ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++";
+        cout <<"\n ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++";
     }
     ll_print(ll_head);
+
+}
+int main() {
+	// your code goes here
+    Init_ll();
 	return 0;
 }

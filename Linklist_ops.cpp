@@ -22,7 +22,7 @@ int ll_size(struct node *head){
         cout <<"\n |";
         cout <<"\n V";
     }
-    return counter;
+    return ++counter;
 }
 
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>

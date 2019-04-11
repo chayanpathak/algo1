@@ -7,6 +7,9 @@ struct node {
     int data;
     struct node *next;
 };
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+//Module to get size of linked list
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 int link_list_size(struct node *head){
     int counter = 0;
     struct node *current = head;
@@ -17,12 +20,13 @@ int link_list_size(struct node *head){
     }
     return counter;
 }
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+//Module to print linked list
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 void link_list_print(struct node *head){
     cout<<"++++++++++++++++++++++++++++++++++++++++++++++++++++++";
     int counter = 0;
     struct node *current = head;
-    cout <<"\n The data of the node is "<<current->data;
-    cout<<"\n"<<current->next;
     while(current->next != NULL){
         cout<<"\n >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>";
         counter++;
@@ -32,17 +36,28 @@ void link_list_print(struct node *head){
         cout<<"\n <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
     }
 }
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+//Module to make a new node
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+node* getnode( int data){
+    node*  new_node = (node*)malloc (sizeof(node));
+    new_node-> data = data;
+    new_node->next = NULL;
+    return new_node;
+}
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+//Module to insert new node at specefic position
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 void link_list_insert(struct node *head,int data, int position){
     int k = 1;
     struct node *new_node, *p, *q;
-    cout << "\n creating new node";
-    new_node = (node *)malloc(sizeof(struct node));
+    cout << "\n creating new node with the required data";
+    new_node = getnode(data);
     cout << "\n created new node";
     if(!new_node){
-        cout << "No space error in creating new entry";
+        cout << "\n No space error in creating new entry";
         return;
     }
-    new_node->data = data;
     cout << "\n assigned the data to new node";
     p = head;
     if (position == 1){
@@ -60,9 +75,10 @@ void link_list_insert(struct node *head,int data, int position){
         new_node->next = p;
     }
 }
-void Initialize_link_list(){
-    node *head = NULL;
-    head = new node();
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+//Module to make new linked list
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+void Initialize_link_list(struct node  * *head){
     int option = 0;
     int entry_position;
     int data;
@@ -70,7 +86,7 @@ void Initialize_link_list(){
         cout << "\n Enter 1. to quit";
         cin >> option;
         if(option != 1){
-            entry_position = link_list_size(head);
+            entry_position = link_list_size(*head);
             entry_position++;
             cout << "\n entry_position"<<entry_position;
             cout <<"\n <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
@@ -85,6 +101,9 @@ void Initialize_link_list(){
 }
 int main() {
 	// your code goes here
-	Initialize_link_list();
+	struct node * a;
+	a->data = 0;
+	a->next = NULL;
+	Initialize_link_list(&a);
 	return 0;
 }

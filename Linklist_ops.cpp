@@ -10,100 +10,114 @@ struct node {
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 //Module to get size of linked list
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-int link_list_size(struct node *head){
+int ll_size(struct node *head){
     int counter = 0;
     struct node *current = head;
     while(current->next != NULL){
         counter++;
-        cout << "\n"<<counter;
+        cout << "\n The position "<<counter;
         current = current->next;
+        cout<<"\n Data is "<<current->data;
+        cout <<"\n |";
+        cout <<"\n |";
+        cout <<"\n V";
     }
     return counter;
 }
+
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 //Module to print linked list
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-void link_list_print(struct node *head){
-    cout<<"++++++++++++++++++++++++++++++++++++++++++++++++++++++";
+void ll_print(struct node *head){
     int counter = 0;
     struct node *current = head;
     while(current->next != NULL){
-        cout<<"\n >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>";
         counter++;
-        cout <<"\n The node number is: "<<counter;
-        cout <<"\n The data of the node is "<<current->data;
+        cout << "\n The position "<<counter;
         current = current->next;
-        cout<<"\n <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
+        cout<<"\n Data is "<<current->data;
+        //cout <<"\n |";
+        //cout <<"\n |";
+        //cout <<"\n V";
     }
 }
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 //Module to make a new node
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-node* getnode( int data){
+node* get_node( int data){
     node*  new_node = (node*)malloc (sizeof(node));
+    if (!new_node){
+        cout <<"\n ERROR : new entry not created ";
+    }
     new_node-> data = data;
     new_node->next = NULL;
     return new_node;
 }
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-//Module to insert new node at specefic position
+//Module to insert new node at specific position
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-void link_list_insert(struct node *head,int data, int position){
+void ll_insert(struct node **head, int data, int position){
     int k = 1;
-    struct node *new_node, *p, *q;
-    cout << "\n creating new node with the required data";
-    new_node = getnode(data);
-    cout << "\n created new node";
-    if(!new_node){
-        cout << "\n No space error in creating new entry";
-        return;
+    struct node *new_node, *p , *q;
+    int size_of_ll = ll_size(*head);
+    if ((position > size_of_ll + 1) || (position < 1)){
+        cout <<"\n The entered position is invalid";
     }
-    cout << "\n assigned the data to new node";
-    p = head;
+    else {
+    new_node = get_node(data);
+    p = *head;
     if (position == 1){
-        new_node->next = p;
-        head = new_node;
+            new_node->next = p;
+            *head = new_node;
     }
-    else{
-            // Traverse till we go to the position we want to insert
-        if(p != NULL && k < position){
+    else {
+        //start traversing to the position where we want to insert
+        while(p != NULL && k < position){
             k++;
-            q = p;
+            q= p;
             p = p->next;
         }
         q->next = new_node;
         new_node->next = p;
     }
+    int size_of_ll = ll_size(*head);
+    }
+
+    cout <<"\n =======================================================";
+    cout <<"\n The size of the linked list is "<<size_of_ll;
+
 }
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 //Module to make new linked list
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-void Initialize_link_list(struct node  * *head){
+void Init_ll(struct node  * head){
     int option = 0;
     int entry_position;
     int data;
-    while(option != 1){
-        cout << "\n Enter 1. to quit";
-        cin >> option;
-        if(option != 1){
-            entry_position = link_list_size(*head);
-            entry_position++;
-            cout << "\n entry_position"<<entry_position;
-            cout <<"\n <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
-            cout << "\n Enter the data";
-            cin >> data;
-            cout << "\n data entered"<<data;
-            cout <<"\n <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
-            link_list_insert(head,data,1);
-        }
-    }
-    link_list_print(head);
 }
 int main() {
 	// your code goes here
-	struct node * a;
-	a->data = 0;
-	a->next = NULL;
-	Initialize_link_list(&a);
+	struct node * ll_head;
+	int value1 = 3;
+	int option =0;
+	int value,entry_pos;
+	//a->data = 0;
+	//a->next = NULL;
+	cout <<"\n Enter the value that goes in the head";
+	ll_head = get_node(value1);
+	ll_head->next = get_node(value1);
+	ll_head->next->next = get_node(value1+1);
+    ll_head->next->next->next = get_node(value1+2);
+    while (option !=1){
+        cout <<"\n enter the value you want to enter";
+    	cin >> value;
+        entry_pos = ll_size(ll_head);
+        entry_pos++;
+    	ll_insert(&ll_head,value,entry_pos);
+        cout << "\n <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
+        cout<<"\n Enter 1 to quit";
+        cin>> option;
+    }
+    ll_print(ll_head);
 	return 0;
 }

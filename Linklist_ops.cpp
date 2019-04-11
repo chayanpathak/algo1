@@ -15,7 +15,7 @@ int ll_size(struct node *head){
     struct node *current = head;
     while(current->next != NULL){
         counter++;
-        cout << "\n The position "<<counter;
+        cout << "\n The position is "<<counter;
         current = current->next;
         cout<<"\n Data is "<<current->data;
         cout <<"\n |";
@@ -33,7 +33,7 @@ void ll_print(struct node *head){
     struct node *current = head;
     while(current->next != NULL){
         counter++;
-        cout << "\n The position "<<counter;
+        cout << "\n The position is "<<counter;
         current = current->next;
         cout<<"\n Data is "<<current->data;
         //cout <<"\n |";

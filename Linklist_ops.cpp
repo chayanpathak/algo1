@@ -210,6 +210,9 @@ int ll_search(struct node *head){
         cin >> option;
     }
 }
+void full_ll_delete(struct node *head){
+
+}
 int main() {
 	// your code goes here
 	struct node* head;

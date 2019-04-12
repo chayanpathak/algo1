@@ -192,11 +192,10 @@ int ll_search(struct node *head){
         cin>> data;
         int counter = 0;
         struct node *current = head;
-        while(current->next != NULL){
+        while(current!= NULL){
                 if(current->data == data){
                     found = 1;
                     cout << "\n The position is "<<counter;
-                    current = current->next;
                     cout <<"\n||||||||||||||||||||||||||||||||||||||||||||||||| |";
                     return ++counter;
                 }
@@ -214,8 +213,9 @@ int ll_search(struct node *head){
 int main() {
 	// your code goes here
 	struct node* head;
+	int srchd_postion;
     head = Init_ll();
     Delete_ll_init(head);
-    ll_search(head);
+    srchd_postion = ll_search(head);
 	return 0;
 }

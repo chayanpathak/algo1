@@ -210,8 +210,19 @@ int ll_search(struct node *head){
         cin >> option;
     }
 }
-void full_ll_delete(struct node *head){
-
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+//Module to clear linked list
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+void full_ll_delete(struct node **head){
+    struct node  *iter, *aux_node;
+    iter = *head;
+    while(iter != NULL){
+    aux_node = iter;
+    iter = iter->next;
+    free(aux_node);
+    }
+    *head = NULL;
+    ll_print(*head);
 }
 int main() {
 	// your code goes here
@@ -220,5 +231,6 @@ int main() {
     head = Init_ll();
     Delete_ll_init(head);
     srchd_postion = ll_search(head);
+    full_ll_delete(&head);
 	return 0;
 }

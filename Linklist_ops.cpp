@@ -181,11 +181,41 @@ void Delete_ll_init(struct node *head){
     ll_print(head);
 
 }
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+//Module to search entry within linked list
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+int ll_search(struct node *head){
+    int data,found = 0;
+    int option =0;
+    while (option !=1){
+        cout << "\n Enter the data you want to searched";
+        cin>> data;
+        int counter = 0;
+        struct node *current = head;
+        while(current->next != NULL){
+                if(current->data == data){
+                    found = 1;
+                    cout << "\n The position is "<<counter;
+                    current = current->next;
+                    cout <<"\n||||||||||||||||||||||||||||||||||||||||||||||||| |";
+                    return ++counter;
+                }
+            current = current->next;
+            counter++;
+        }
+        if (found == 0){
+            cout <<"\n Sorry the entry does not exist";
+            return  -1;
+        }
+        cout <<"\n Press 1 to quit";
+        cin >> option;
+    }
+}
 int main() {
 	// your code goes here
 	struct node* head;
     head = Init_ll();
     Delete_ll_init(head);
+    ll_search(head);
 	return 0;
 }
-
